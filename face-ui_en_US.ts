@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="27"/>
-        <source>PushButton</source>
+        <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
