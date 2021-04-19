@@ -1,16 +1,26 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "iostream"
+#include <QTimer>
 
-const int CAMERA_INDEX = 1;
+using namespace cv;
+using namespace std;
+const int CAMERA_INDEX = 0;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    cout << "constructor";
     ui->setupUi(this);
 
     ui->graphicsView->setScene(new QGraphicsScene(this));
     ui->graphicsView->scene()->addItem(&pixmap);
+}
+
+void MainWindow::showEvent( QShowEvent* event ) {
+    QMainWindow::showEvent( event );
+    QTimer::singleShot(0, this, SLOT(startVideo()));
 }
 
 MainWindow::~MainWindow()
@@ -18,10 +28,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_startButton_clicked()
+void MainWindow::startVideo()
 {
-    using namespace cv;
-
     if(video.isOpened())
     {
         ui->startButton->setText("Start");
@@ -67,15 +75,6 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if(video.isOpened())
-    {
-        QMessageBox::warning(this,
-                             "Warning",
-                             "Stop the video before closing the application!");
-        event->ignore();
-    }
-    else
-    {
-        event->accept();
-    }
+    video.release();
+    event->accept();
 }

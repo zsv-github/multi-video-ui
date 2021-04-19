@@ -23,12 +23,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void showEvent(QShowEvent* event );
 
 protected:
     void closeEvent(QCloseEvent *event);
 
 private slots:
-    void on_startButton_clicked();
+    void startVideo();
 
 private:
     Ui::MainWindow *ui;
