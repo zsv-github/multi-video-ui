@@ -29,10 +29,10 @@ class FaceProcessingServiceImpl final : public FaceProcessing::Service {
 public:
     explicit FaceProcessingServiceImpl(std::queue<bool> &notifier) {
         this->notifier = &notifier;
-        faissIndexDir = "/mnt/hdd/CLionProjects/nist/face_recognition/model";
+        faissIndexDir = "../face_recognition/model";
         faceRecognizer = new FaceRecognizer(
-                "/mnt/hdd/CLionProjects/nist/face_recognition/model/fd.onnx",
-                "/mnt/hdd/CLionProjects/nist/face_recognition/model/fr.onnx"
+                "../face_recognition/model/fd.onnx",
+                "../face_recognition/model/fr.onnx"
         );
         faissService = new FaissService(5000);
         if (boost::filesystem::exists(faissIndexDir + "/" + faissService->faissIndexFileName)) {
@@ -116,10 +116,10 @@ void GrpcServer(std::queue<bool> &notifier) {
 }
 
 [[noreturn]] void Recognize(std::queue<bool> &notifier, std::queue<cv::Mat> &inputImgs, std::queue<std::vector<ResultFace>> &resultFacesQueue){
-    std::string faissIndexDir = "../../face_recognition/model";
+    std::string faissIndexDir = "../face_recognition/model";
     FaceRecognizer faceRecognizer = FaceRecognizer(
-            "../../face_recognition/model/fd.onnx",
-            "../../face_recognition/model/fr.onnx"
+            "../face_recognition/model/fd.onnx",
+            "../face_recognition/model/fr.onnx"
     );
     FaissService faissService = FaissService(5000);
     if (boost::filesystem::exists(faissIndexDir + "/" + faissService.faissIndexFileName)) {
