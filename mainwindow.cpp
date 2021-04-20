@@ -195,7 +195,7 @@ void GrpcServer(std::queue<bool> &notifier) {
                 resultFacesQueue.push(resultFaces);
             }
         }
-        t2.out("total time");
+//        t2.out("total time");
     }
 }
 
@@ -273,6 +273,7 @@ void MainWindow::startVideo()
             resultFaceQueue.pop();
         }
 
+        // TODO ---hUY LV ---- resultFace[i].img: crop faces
         for(int i = 0; i < resultFace.size(); i++){
             int alignImgSize = 448;
             cv::Mat face;
