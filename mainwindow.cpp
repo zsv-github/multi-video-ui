@@ -37,7 +37,7 @@ void MainWindow::startVideo()
         return;
     }
 
-    if(!video.open(CAMERA_INDEX))
+    if(!video.open("/mnt/hdd/CLionProjects/nist/face_recognition/test1.mp4"))
     {
         QMessageBox::critical(this,
                               "Video Error",
