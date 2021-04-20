@@ -34,6 +34,5 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QGraphicsPixmapItem pixmap;
-    cv::VideoCapture video;
 };
 #endif // MAINWINDOW_H
