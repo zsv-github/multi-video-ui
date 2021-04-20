@@ -128,7 +128,7 @@ if (x86_64)
             ${CMAKE_CURRENT_SOURCE_DIR}/face_recognition/libs/faiss/lib/libfaiss.a
             -lblas
             -llapack
-            #            -lgfortran
+            -lgfortran
             ${OpenCV_LIBS}
             ${GRPC_CPP_LIB}
             ${Protobuf_LIBRARIES}
