@@ -27,6 +27,7 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *event);
+    bool close;
 
 private slots:
     void startVideo();

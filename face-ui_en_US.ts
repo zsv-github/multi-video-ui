@@ -5,14 +5,14 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="64"/>
+        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="89"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="27"/>
-        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="65"/>
-        <source>Start</source>
+        <location filename="mainwindow.ui" line="75"/>
+        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="91"/>
+        <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

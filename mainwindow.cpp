@@ -208,6 +208,7 @@ MainWindow::MainWindow(QWidget *parent) :
     std::cout << "constructor";
     ui->setupUi(this);
 
+    close = false;
     ui->graphicsView->setScene(new QGraphicsScene(this));
     ui->graphicsView->scene()->addItem(&pixmap);
 }
@@ -244,9 +245,10 @@ void MainWindow::startVideo()
         return;
     }
 
-    ui->startButton->setText("Stop");
-
     while (true) {
+        if(close) {
+            break;
+        }
         t1.reset();
         bool success = capture.read(processImg);
         if (!success) {
@@ -278,6 +280,11 @@ void MainWindow::startVideo()
             int alignImgSize = 448;
             cv::Mat face;
             cv::resize(resultFace[i].img, face, cv::Size(alignImgSize, alignImgSize));
+            cv::Mat f = resultFace[i].img;
+            QImage q = QImage(f.data, f.cols, f.rows, f.step, QImage::Format_RGB888);
+            ui->detectedImage->setPixmap(QPixmap::fromImage(q.rgbSwapped()));
+            QString a = QString::fromStdString("ID: " + std::to_string(resultFace[i].id));
+            ui->detectedName->setText(a);
             cv::Mat insertImg(drawFrame, cv::Rect(0, i*alignImgSize, alignImgSize, alignImgSize));
             face.copyTo(insertImg);
             cv::putText(drawFrame,
@@ -303,11 +310,10 @@ void MainWindow::startVideo()
         ui->graphicsView->fitInView(&pixmap, Qt::KeepAspectRatio);
         qApp->processEvents();
     }
-
-    ui->startButton->setText("Start");
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
+    close = true;
     event->accept();
 }
