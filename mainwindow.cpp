@@ -49,7 +49,7 @@ void MainWindow::startVideo()
     cv::VideoCapture capture;
     std::vector<ResultFace> resultFace;
 
-    if(!capture.open("/mnt/hdd/CLionProjects/nist/face_recognition/test1.mp4"))
+    if(!capture.open(CAMERA_INDEX))
     {
         QMessageBox::critical(this,
                               "Video Error",
