@@ -78,7 +78,7 @@ set(FACE_RECOGNITION_SOURCES
         face_recognition/src/proto/multiple_camera_server.grpc.pb.cc
         face_recognition/src/proto/multiple_camera_server.pb.h
         face_recognition/src/proto/multiple_camera_server.pb.cc
-        )
+        face_recognition/src/grpc_server.h)
 
 add_executable(
         face-ui
