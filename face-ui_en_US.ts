@@ -5,19 +5,19 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="109"/>
+        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="110"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="74"/>
-        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="112"/>
+        <location filename="mainwindow.ui" line="80"/>
+        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="113"/>
         <source>ID: Not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="21"/>
-        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="110"/>
+        <location filename="cmake-build-debug/face-ui_autogen/include/ui_mainwindow.h" line="111"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>

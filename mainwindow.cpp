@@ -58,8 +58,7 @@ void MainWindow::startVideo()
     {
         QMessageBox::critical(this,
                               "Video Error",
-                              "Make sure you entered a correct and supported video file path,"
-                              "<br>or a correct RTSP feed URL!");
+                              "Make sure you entered a correct camera index");
         return;
     }
 
@@ -79,6 +78,8 @@ void MainWindow::startVideo()
 
         if(timer.elapsed() > 1){
             resultFace.clear();
+            ui->detectedImage->clear();
+            ui->detectedName->setText("ID: Not found");
         }
 
         if(!resultFaceQueue.empty()){
@@ -94,9 +95,9 @@ void MainWindow::startVideo()
             cv::resize(resultFace[i].img, face, cv::Size(alignImgSize, alignImgSize));
             cv::Mat f = resultFace[i].img;
             QImage q = QImage(f.data, f.cols, f.rows, f.step, QImage::Format_RGB888);
-//            ui->detectedImage->setPixmap(QPixmap::fromImage(q.rgbSwapped()));
+            ui->detectedImage->setPixmap(QPixmap::fromImage(q.rgbSwapped()));
             QString a = QString::fromStdString("ID: " + std::to_string(resultFace[i].id));
-//            ui->detectedName->setText(a);
+            ui->detectedName->setText(a);
             cv::Mat insertImg(drawFrame, cv::Rect(0, i*alignImgSize, alignImgSize, alignImgSize));
             face.copyTo(insertImg);
             cv::putText(drawFrame,
