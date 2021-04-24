@@ -27,10 +27,12 @@ public:
 
 protected:
     void closeEvent(QCloseEvent *event);
-    bool close;
+    bool closing;
 
 private slots:
     void startVideo();
+
+    void on_closeButton_clicked();
 
 private:
     Ui::MainWindow *ui;

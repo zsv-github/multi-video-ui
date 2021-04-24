@@ -21,13 +21,18 @@ MainWindow::MainWindow(QWidget *parent) :
     std::cout << "constructor\n";
     ui->setupUi(this);
 
-    close = false;
+    closing = false;
+    this->setStyleSheet("background-color: #EFEBE7;");
     ui->graphicsView->setScene(new QGraphicsScene(this));
     ui->graphicsView->scene()->addItem(&pixmap);
+    ui->graphicsView->setStyleSheet("background-color : gray");
+    ui->graphicsView->setStyleSheet("border: 0px");
+    ui->detectedImage->setStyleSheet("QLabel { background-color : gray; }");
 }
 
 void MainWindow::showEvent( QShowEvent* event ) {
     QMainWindow::showEvent( event );
+    QTimer::singleShot(0, this, SLOT(showFullScreen()));
     QTimer::singleShot(0, this, SLOT(startVideo()));
 }
 
@@ -60,7 +65,7 @@ void MainWindow::startVideo()
 
     while (true) {
         // TODO hUY break other threads as well
-        if(close) {
+        if(closing) {
             break;
         }
         bool success = capture.read(processImg);
@@ -121,6 +126,11 @@ void MainWindow::startVideo()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    close = true;
+    closing = true;
     event->accept();
+}
+
+void MainWindow::on_closeButton_clicked()
+{
+    this->close();
 }
