@@ -3,17 +3,13 @@ cmake_minimum_required(VERSION 3.5)
 project(face-ui)
 set(CMAKE_BUILD_TYPE Release)
 
-set(USE_TRT OFF)
-set(LOG_TIME ON)
+set(USE_TRT ON)
+
 set(USE_JETSON_UTILS OFF)
 
 
 if (USE_TRT)
     add_definitions(-DUSE_TRT)
-endif ()
-
-if (LOG_TIME)
-    add_definitions(-DLOG_TIME)
 endif ()
 
 if (USE_JETSON_UTILS)
@@ -149,13 +145,13 @@ if (x86_64)
 elseif (aarch64)
     target_link_libraries(
             face-ui
+            Qt${QT_VERSION_MAJOR}::Widgets
             Threads::Threads
             -lboost_filesystem -lboost_system
             -lstdc++fs
+#            -lblas
+#            -llapack
             -lfaiss
-            -lblas
-            -llapack
-            -ljetson-utils
             ${OpenCV_LIBS}
             ${GRPC_CPP_LIB}
             ${Protobuf_LIBRARIES}
